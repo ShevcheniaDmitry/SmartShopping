@@ -1,0 +1,22 @@
+{% extends 'users/fon.html' %}
+{% block title%}Авторизация{% endblock %}
+{% block css %}<link rel="stylesheet" href="static/css/new_pass.css" media="screen" type="text/css" />{% endblock %}
+
+{% block content %}
+<form id="login" class="login">
+	<h2>Новый пароль</h2>
+	<label for="password" class="icon-lock">Пароль:</label>
+	<input type="password" class="password" id="password" placeholder="Пароль"/>
+	<label for="password2" class="icon-lock">Пароль2:</label>
+	<input type="password" class="password2" id="password2" placeholder="Повторите пароль"/>
+	<input type="submit" value="Готово" />
+	<div class="extra">
+		<table>
+   <tr>
+    <td ><a href="{% url 'registration' %}" class="forgetPassword">Регистрация</a></td>
+	<td ><a href="{% url 'login' %}" class="forgetPassword">Вход</a></td>
+   </tr>
+  </table>
+	</div>
+</form>
+{% endblock %}

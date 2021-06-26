@@ -1,0 +1,29 @@
+{% extends 'users/fon.html' %}
+{% block title%}Авторизация{% endblock %}
+{% block css %}<link rel="stylesheet" href="static/css/login.css" media="screen" type="text/css" />{% endblock %}
+
+{% block content %}
+<form method="POST" action="" id="login" class="login">
+	{% csrf_token %}
+	<h2>Авторизация</h2>
+	<label for="user" class="icon-user">Логин:</label>
+	<input class="user" id="user" name="username" placeholder="Логин"/>
+	<label for="password" class="icon-lock">Пароль:</label>
+	<input type="password" class="password" id="password" name="password" placeholder="Пароль"/>
+	<input type="submit" value="Войти" />
+	<div class="extra">
+		<table>
+   <tr>
+    <td ><a href="{% url 'remember_pass' %}" class="forgetPassword">Забыл пароль</a></td>
+	<td ><a href="{% url 'registration' %}" class="forgetPassword">Регистрация</a></td>
+   </tr>
+  </table>
+	</div>
+</form>
+	{% for message in messages %}
+		<div class="messages">
+			<p>{{message}}</p>
+		</div>
+	{% endfor %}
+{% endblock %}
+

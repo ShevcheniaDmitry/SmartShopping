@@ -1,0 +1,20 @@
+{% extends 'users/fon.html' %}
+{% block title%}Авторизация{% endblock %}
+{% block css %}<link rel="stylesheet" href="static/css/remember_pass.css" media="screen" type="text/css" />{% endblock %}
+
+{% block content %}
+<form id="login" class="login">
+	<h2>Ведите email</h2>
+	<label for="email" class="icon-envelope">Почта:</label>
+	<input type="email" class="email" id="email" placeholder="Email"/>
+	<input type="submit" value="Отправить" />
+	<div class="extra">
+		<table>
+   <tr>
+    <td ><a href="{% url 'registration' %}" class="forgetPassword">Регистрация</a></td>
+	<td ><a href="{% url 'login' %}" class="forgetPassword">&ensp;Вход</a></td>
+   </tr>
+  </table>
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'main/main_base.html' %}
+{% block title%}пользователь{% endblock %}
+
+{% block content1 %}
+<form method="POST" action="">
+	{% csrf_token %}
+    <h3>Добавление товара</h3>
+    <input type="text" id="name_pr" name="name" placeholder="Название"/><br>
+    <input type="number" min="0" step="0.01" id="price_pr" name="price" placeholder="Цена (за 1 шт.)"/><br>
+    <input type="number" min="1"step="1" id="count_pr" name="count" placeholder="Количество"/><br>
+    <input type="date" id="data_pr" name="data" placeholder="Дата"/><br>
+    <input type="submit" value="Добавить" /><br>
+
+</form>
+
+<table>
+ <caption><h3>Список покупок</h3></caption>
+<form method="POST" action="" id="Delete">
+    {% csrf_token %}
+    {% for element in date %}
+    <tr><td>{{ forloop.counter }} {{ element.name }} {{element.price}}</td><td> <input type="submit" name="{{element.id}}" value="Удалить" /> </td></tr><br>
+    {% endfor %}
+</form>
+</table>
+{% endblock %}
