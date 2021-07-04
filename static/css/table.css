@@ -1,0 +1,54 @@
+/* таблица */
+.buy {
+    margin: 330px 0 0 -250px;
+    max-height: 600px;
+}
+
+.shop {
+    margin: 500px 0 0 -250px;
+    max-height: 500px;
+}
+
+.tab {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display:block;
+    position: fixed;
+    overflow-y: auto;
+    overflow-x:hidden;
+    top: 0;
+    left: 50%;
+    width: 400px;
+    border-collapse: collapse;
+    border-left: 3px solid #ffff00;
+    border-right: 3px solid #ffff00;
+    border-bottom: 3px solid #F79361;
+    font-family: "Montserrat";
+ }
+.tab caption {
+    width:374px;
+    background: #ffff00;
+    padding: 10px;
+    box-shadow: 0 2px  4px 0 rgba(0,0,0,.3);
+    color: black;
+    font-family: "Montserrat";
+    font-style: normal;
+    font-size: 26px;
+    text-align: center;
+    margin: -10px 0 0 0;
+}
+.tab td {
+text-align: center;
+}
+
+.tab tr:nth-child(2n) {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.tab tr:nth-child(2n+1) {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.tab td:last-of-type {
+  text-align: center;
+}

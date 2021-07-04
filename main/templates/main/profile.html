@@ -1,0 +1,14 @@
+{% extends 'main/main_base.html' %}
+{% block title%}пользователь{% endblock %}
+
+{% block content1 %}
+<form class="form" id="form6" method="POST" action="" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="caption">Изменения:</div>
+        {{ form.picture }}
+        <input class='input' type="text" name="surname" placeholder="Фамилия">
+        <input class='input' type="text" name="nameuser" placeholder="Имя">
+        <input class='input' type="date" name="data" placeholder="Дата рождения">
+        <button class='butt add' type="submit" name="button" value="Обновить">Обновить</button>
+</form>
+{% endblock %}

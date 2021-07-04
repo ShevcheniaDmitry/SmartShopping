@@ -1,0 +1,49 @@
+/* кнопки "удалить" */
+.del {
+  display: inline-block;
+  padding: 5px 10px;
+  background: #ffff00;
+  box-shadow: 2px 2px 0 0 #ffff00;
+  position: relative;
+  border-radius: 10px;
+}
+
+.del:hover {
+  box-shadow: none;
+  top: 2px;
+  left: 2px;
+}
+
+/* в одну линию */
+.line {
+    display:  flex;
+    width: 390px;
+    padding: 0 0 0 5px;
+}
+
+/* кнопки */
+.add {
+    width: 400px;
+}
+
+.butt {
+    position: relative;
+    display: block;
+    color: white;
+    background: black;
+    font-size: 14px;
+    border-radius: 20px;
+    font-family: "montserrat";
+    text-decoration: none;
+    margin: 10px 0;
+    border: 2px solid white;
+    padding: 14px 60px;
+    text-transform: uppercase;
+    text-align: center;
+    overflow: hidden;
+    transition: 1s all ease;
+}
+
+.butt:hover{
+    background: green;
+    }

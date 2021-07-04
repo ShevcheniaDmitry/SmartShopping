@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect
 from .forms import CreateNewUser
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.decorators import login_required
-import datetime
+from .models import Profile
 
 
 def index(request):
@@ -18,6 +17,21 @@ def inside_user(func):
     return inner
 
 
+def form_errors(request, errors):
+    if 'Пользователь с таким именем уже существует' in errors:
+        messages.error(request, 'Пользователь c таким именем уже зарегистрирован')
+    elif 'username' in errors:
+        messages.error(request, 'Недопустимое имя пользователя')
+    elif 'email' in errors:
+        messages.error(request, 'Неверный адресс электронной почты')
+    elif 'Введенные пароли не совпадают' in errors:
+        messages.error(request, 'Введенные пароли не совпадают')
+    elif 'password' in errors:
+        messages.error(request, 'Пароль слишком простой')
+    else:
+        messages.error(request, 'Ошибка заполнения формы')
+
+
 @inside_user
 def registration_user(request):
     if request.method == 'POST':
@@ -27,15 +41,15 @@ def registration_user(request):
         form.password1 = request.POST['password1']
         form.password2 = request.POST['password2']
         if form.is_valid():
-            form.save()
-            messages.success(request, 'пользователь '+form.username+' зарегистрирован')
+            user = form.save()
+            Profile.objects.create(user=user)
+            messages.success(request, 'пользователь ' + str(user) + ' зарегистрирован')
             return redirect('login')
+        else:
+            form_errors(request, str(form.errors))
     else:
         form = CreateNewUser()
-    context = {
-        'form': form,
-    }
-    return render(request, 'users/registration.html', context)
+    return render(request, 'users/registration.html', context={'form': form})
 
 
 @inside_user
@@ -46,7 +60,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('list')
+            return redirect('buy')
         else:
             messages.info(request, 'Неверно имя пользователя или пароль')
     return render(request, 'users/login.html')
@@ -57,10 +71,5 @@ def logout_user(request):
     return redirect('login')
 
 
-def remember_pass(request):
-    return render(request, 'users/remember_pass.html')
 
-
-def new_pass(request):
-    return render(request, 'users/new_pass.html')
 

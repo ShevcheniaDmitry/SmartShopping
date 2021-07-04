@@ -1,6 +1,9 @@
 {% extends 'users/fon.html' %}
 {% block title%}Авторизация{% endblock %}
-{% block css %}<link rel="stylesheet" href="static/css/login.css" media="screen" type="text/css" />{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="static/css/login.css" media="screen" type="text/css" />
+<link rel="stylesheet" href="static/css/base_log.css" media="screen" type="text/css" />
+{% endblock %}
 
 {% block content %}
 <form method="POST" action="" id="login" class="login">
@@ -14,7 +17,7 @@
 	<div class="extra">
 		<table>
    <tr>
-    <td ><a href="{% url 'remember_pass' %}" class="forgetPassword">Забыл пароль</a></td>
+    <td ><a href="{% url 'password_reset' %}" class="forgetPassword">Забыл пароль</a></td>
 	<td ><a href="{% url 'registration' %}" class="forgetPassword">Регистрация</a></td>
    </tr>
   </table>

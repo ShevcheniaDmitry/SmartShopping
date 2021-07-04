@@ -2,72 +2,45 @@
 {% block title%}пользователь{% endblock %}
 
 {% block content1 %}
-<style class="text/css">
-  .form1 {
-    width: 100%;
-  }
-  .caption {
-    font-size: 24px;
-    text-align: center;
-  }
-  .form1 {
-    margin-top: 10px;
-    font-weight: bold;
-  }
-  .form1 select, .form1 input{
-    width: 100%;
-    margin: 5px 0;
-    padding: 5px 15px;
-  }
-</style>
-
-<form class="form1" name="form1" method="POST" action="">
+<form class="form" id='form1' name="form1" method="POST" action="">
     {% csrf_token %}
   <div class="caption">Добавление товара</div>
-  <input type="text" name="name" placeholder="Название" required="required">
-  <input type="number" min="1"step="1" id="count_pr" name="count" placeholder="Количество" required="required" value="1"/>
-  <select name="measure" size="1">
-    <option selected value="шт.">шт.</option>
-    <option value="кг.">кг.</option>
-    <option value="гр.">гр.</option>
-    <option value="л.">л.</option>
+    <input class='input' type="text" name="name" placeholder="Название" required="required">
+    <input class='input' type="number" min="0.01"step="0.01" name="price" placeholder="Цена" required="required">
+  <div class="line">
+    <input class='input' type="number" min="1"step="1" id="count_pr" name="count" placeholder="Количество" required="required" value="1"/>
+    <select class='input' name="measure" size="1">
+        <option selected value="шт.">шт.</option>
+        <option value="кг.">кг.</option>
+        <option value="гр.">гр.</option>
+        <option value="л.">л.</option>
   </select>
-  <input type="date" name="data" placeholder="Дата" required="required" value="{{ today }}"/>
-  <input type="submit" name="submit_btn" value="Добавить">
+  </div>
+  <input class='input' type="date" name="data" placeholder="Дата" required="required" value="{{ today }}"/>
+    <button class='butt add' type="submit" name="button" value="Добавить">Добавить</button>
 </form>
 
-<form class="form1" name="form2" method="POST" action="">
+<form class="form" id='form2' name="form2" method="POST" action="">
     {% csrf_token %}
-<div class="caption">Список покупок на {{ day }}</div>
-<input type="date" name="data" placeholder="Дата" value="{{ day }}"/>
-<input type="submit" name="upgrade" value="Обновить">
+<input class='input' type="date" name="data" placeholder="Дата" value="{{ day }}"/>
+    <button class='butt add' type="submit" name="button" value="Готово">Готово</button>
 </form>
 
-<div style='background: url("static/image/shopping-list.jpg")'>
-<form name="form3" method="POST" action="">
-    {% csrf_token %}
-{% for element in date %}
-<div class="field"><p>{{ forloop.counter }}. {{ element.name }} {{element.count}} {{element.measure}}    <input type="submit" name="{{ element.id }}" value="Удалить" /></p></div>
-{% endfor %}
-</form></div>
-{% endblock %}
-
-
-
-
-
-
-
-<!--
-<div style='background: url("static/image/shopping-list.jpg"); border: 1px;'>
-     <table style="width:100%">
- <caption><h3>Список покупок</h3></caption>
-<form method="POST" action="" id="Delete">
-    {% csrf_token %}
-    {% for element in date %}
-    <tr><td>{{ forloop.counter }}. {{ element.name }} {{element.count}}{{element.measure}}</td><td> <input type="submit" name="{{element.id}}" value="Удалить" /> </td></tr><br>
-    {% endfor %}
-</form>
+<table class="tab shop">
+<caption>Список покупок <br> на {{ day }} </caption>
+    <form name="form3" method="POST" action="">
+        {% csrf_token %}
+        {% for element in date %}
+        <tr>
+        <td><p>{{ forloop.counter }}.</p></td>
+        <td><p>{{ element.name }}</p></td>
+        <td><p>{{element.count}} {{element.measure}}</p></td>
+        <td><p>{{element.price}} бел. руб.</p></td>
+        <td><button class='del' type="submit" name="button" value="{{ element.id }}">Удалить</button></td>
+        </tr>
+        {% empty %}
+        <tr><td><p class="caption">Товаров нет</p></td></tr>
+        {% endfor %}
+    </form>
 </table>
-</div>
--->
+{% endblock %}
