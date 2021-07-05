@@ -76,13 +76,22 @@ WSGI_APPLICATION = 'SmartShopping.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd44frdmm3i7rgs',
+        'USER': 'kquyggevrmxwfe',
+        'PASSWORD': '5e9b0a35c767c6355795dddb56da94a24133b08a5f6b9660e89300c1bc280b72',
+        'HOST': 'ec2-54-73-147-133.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
