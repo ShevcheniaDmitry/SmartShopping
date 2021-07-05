@@ -14,18 +14,19 @@
   left: 2px;
 }
 
-/* в одну линию */
+/* расположение кнопок в одну линию */
 .line {
     display:  flex;
     width: 390px;
     padding: 0 0 0 5px;
 }
 
-/* кнопки */
+/* ширина кнопки Добавить и др. */
 .add {
     width: 400px;
 }
 
+/* общие стили для всех кнопок кроме Удалить */
 .butt {
     position: relative;
     display: block;

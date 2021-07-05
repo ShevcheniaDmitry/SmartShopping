@@ -5,86 +5,90 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block title %}{% endblock %}</title>
-    {% block css %}
+    {% block css %}    <!-- блок для подключения стилей, в данном файле стили bootstrap, на внутренней странице пользователя подменяется файлом css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel='stylesheet prefetch' href='http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css'>
     {% endblock %}
   </head>
-<style>
-body::before {
-  content: '';
-  position: fixed;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
-  z-index: -1;
-  background: url(static/image/shop.jpg) center / cover no-repeat;
-  opacity: .6;
-   }
-body {
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-  background-color: white;
-  }
-.timer {
-  overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  opacity: .7;
-}
-.timer a {
-  float: left;
-  display: block;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 20px;
-  margin-left: 20px;
-}
-</style>
-  <script>
-  var months = new Array(13);
-  months[1]="января"; months[2]="февраля"; months[3]="марта"; months[4]="апреля"; months[5]="мая"; months[6]="июня"; months[7]="июля"; months[8]="августа"; months[9]="сентября"; months[10]="октября"; months[11]="ноября"; months[12]="декабря";
+<!-- css: стили для фона, при вынесении их в отдельный файл перекрываются bootstrap -->
+  <style>
+/* фон полупрозрачный размытый */
+    body::before {
+      content: '';
+      position: fixed;
+      left: 0; right: 0;
+      top: 0; bottom: 0;
+      z-index: -1;
+      background: url(static/image/shop.jpg) center / cover no-repeat;
+      opacity: .6;
+      }
 
-  var time = new Date();
-  var thismonth = months[time.getMonth() + 1];
-  var date = time.getDate();
-  var thisyear = time.getYear();
-  var day = time.getDay() + 1;
+    body {
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: cover;
+      background-color: white;
+      }
 
-  if (thisyear < 2000)
+/* стили для даты и времени внизу экрана */
+    .timer {
+      overflow: hidden;
+      background-color: #333;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      opacity: .7;
+      }
+    .timer a {
+      float: left;
+      display: block;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-size: 20px;
+      margin-left: 20px;
+      }
+  </style>
+  <script>    <!-- js: скрипты для даты и время внизу экрана, при вынесении их в отдельный файл перекрываются bootstrap -->
+    var months = new Array(13);
+    months[1]="января"; months[2]="февраля"; months[3]="марта"; months[4]="апреля"; months[5]="мая"; months[6]="июня"; months[7]="июля"; months[8]="августа"; months[9]="сентября"; months[10]="октября"; months[11]="ноября"; months[12]="декабря";
+
+    var time = new Date();
+    var thismonth = months[time.getMonth() + 1];
+    var date = time.getDate();
+    var thisyear = time.getYear();
+    var day = time.getDay() + 1;
+
+    if (thisyear < 2000)
       thisyear = thisyear + 1900;
-  if (day == 1) DayofWeek = "Воскресенье";
-  if (day == 2) DayofWeek = "Понедельник";
-  if (day == 3) DayofWeek = "Вторник";
-  if (day == 4) DayofWeek = "Среда";
-  if (day == 5) DayofWeek = "Четверг";
-  if (day == 6) DayofWeek = "Пятница";
-  if (day == 7) DayofWeek = "Суббота";
-</script>
-<script>
-setInterval(function() {
-  var cd = new Date();
-  var clockdat = document.getElementById("clockdat");
-  clockdat.innerHTML = cd.toLocaleTimeString();
-}, 1000);
-</script>
-  <body>
+    if (day == 1) DayofWeek = "Воскресенье";
+    if (day == 2) DayofWeek = "Понедельник";
+    if (day == 3) DayofWeek = "Вторник";
+    if (day == 4) DayofWeek = "Среда";
+    if (day == 5) DayofWeek = "Четверг";
+    if (day == 6) DayofWeek = "Пятница";
+    if (day == 7) DayofWeek = "Суббота";
 
-  <div class="timer" >
-  <span style="color:aqua; font-size:20px;">Сегодня:</span>
-  <span style="color:silver; font-size:20px;">
-  <script>
-      document.write(date+" ");
-      document.write(thismonth+ " "+thisyear+" "+"года"+" — "+ DayofWeek);
+    setInterval(function() {
+      var cd = new Date();
+      var clockdat = document.getElementById("clockdat");
+      clockdat.innerHTML = cd.toLocaleTimeString();
+      }, 1000);
   </script>
-  (<span id="clockdat" style="color:aqua;"></span>)
-  </span>
-</div>
+  <body>
+<!-- Дата и время -->
+    <div class="timer" >
+      <span style="color:aqua; font-size:20px;">Сегодня:</span>
+      <span style="color:silver; font-size:20px;">
+      <script>
+        document.write(date+" ");
+        document.write(thismonth+ " "+thisyear+" "+"года"+" — "+ DayofWeek);
+      </script>
+      (<span id="clockdat" style="color:aqua;"></span>)
+      </span>
+    </div>
 
   {% block content %}{% endblock %}
 

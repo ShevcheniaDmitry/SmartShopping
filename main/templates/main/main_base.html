@@ -1,14 +1,13 @@
 {% extends 'users/fon.html' %}
 {% block content %}
-{% block css %}
-<link rel="stylesheet" href="static/css/main.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="static/css/forms.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="static/css/nav.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="static/css/profile.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="static/css/table.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="static/css/button.css" media="screen" type="text/css" />
+{% block css %} <!-- данные css стили заменяют стили bootstrap -->
+<link rel="stylesheet" href="static/css/forms.css" media="screen" type="text/css" /> <!-- стили форм -->
+<link rel="stylesheet" href="static/css/nav.css" media="screen" type="text/css" /> <!-- стили навигации слева в личном кабинете пользователя -->
+<link rel="stylesheet" href="static/css/profile.css" media="screen" type="text/css" /> <!-- стили "Профиль" -->
+<link rel="stylesheet" href="static/css/table.css" media="screen" type="text/css" /> <!-- стили таблиц -->
+<link rel="stylesheet" href="static/css/button.css" media="screen" type="text/css" /> <!-- стили кнопок -->
 {% endblock %}
-
+<!-- Навигационной меню слева в личном кабинете пользователя -->
 <ul id="navbar">
     <li><a href="{% url 'home' %}">Главная</a></li>
     <li><a href="{% url 'profile' %}">Профиль</a></li>
@@ -17,12 +16,11 @@
     <li><a href="#">Контакты</a></li>
     <li><a href="{% url 'logout' %}">Выход</a></li>
 </ul>
-
 {% block content1 %}{% endblock %}
-
+<!-- Профиль пользователя, выводится фото и данные, если они заполнены, если данных нет, выводится только стандартная картинка -->
 <div class="profile">
-    <h2>{{request.user.username}}</h2>
-    <img class="img_profile" src="{{ request.user.profile.picture.url }}">
+    <h2>{{request.user.username}}</h2>  <!-- Логин указаный при регистрации -->
+    <img class="img_profile" src="{{ request.user.profile.picture.url }}"> <!-- Фото пользователя -->
     {% if request.user.profile.surname is not None and request.user.profile.surname != 'None' %}
         <h3>Фамилия:</h3>
         <h2>{{ request.user.profile.surname }}</h2>

@@ -1,23 +1,24 @@
 {% extends 'main/main_base.html' %}
 {% block title%}пользователь{% endblock %}
-
+<!-- Список товаров, которые пользователь планирует купить в магазине: Название товара, количество, мера -->
 {% block content1 %}
+<!-- Форма для добавления товара в базу BuyList -->
 <form class="form" id='form4' name="form4" method="POST" action="">
     {% csrf_token %}
-  <div class="caption">Добавление товара</div>
-  <input class='input' type="text" name="name" placeholder="Название" required="required">
-  <div class="line">
-    <input class='input' type="number" min="1"step="1" id="count_pr" name="count" placeholder="Количество" required="required" value="1"/>
-    <select class='input' name="measure" size="1">
-        <option selected value="шт.">шт.</option>
-        <option value="кг.">кг.</option>
-        <option value="гр.">гр.</option>
-        <option value="л.">л.</option>
-  </select>
-  </div>
+    <div class="caption">Добавление товара</div>
+    <input class='input' type="text" name="name" placeholder="Название" required="required">
+    <div class="line">
+        <input class='input' type="number" min="1"step="1" id="count_pr" name="count" placeholder="Количество" required="required" value="1"/>
+        <select class='input' name="measure" size="1">
+            <option selected value="шт.">шт.</option>
+            <option value="кг.">кг.</option>
+            <option value="гр.">гр.</option>
+            <option value="л.">л.</option>
+        </select>
+    </div>
     <button class='butt add' type="submit" name="button" value="Добавить">Добавить</button>
 </form>
-
+<!-- Кнопки: Очистить - удаляется весь список товаров; Сохранить - Сохраняется список покупок в файл static/files/name.txt-->
 <form class="form" id='form5' name="form5" method="POST" action="">
     {% csrf_token %}
     <div class="line">
@@ -25,21 +26,21 @@
         <input class='butt' type="submit" name="button" value="Сохранить">
     </div>
 </form>
-
+<!-- Таблица подгружаемая из базы данных BuyList, рядом с товарами кнопки "Удалить" -->
 <table class="tab buy">
-<caption>Список покупок</caption>
+    <caption>Список покупок</caption>
+    <!-- Форма передающая id кнопки "Удалить", чтобы удалить товар с этм id -->
     <form name="form3" method="POST" action="">
         {% csrf_token %}
         {% for element in date %}
         <tr>
-        <td><p>{{ forloop.counter }}.</p></td>
-        <td><p>{{ element.name }}</p></td>
-        <td><p>{{element.count}} {{element.measure}}</p></td>
+            <td><p>{{ forloop.counter }}.</p></td>
+            <td><p>{{ element.name }}</p></td>
+            <td><p>{{element.count}} {{element.measure}}</p></td>
             <td><button class='del' type="submit" name="button" value="{{ element.id }}">Удалить</button></td>
         </tr>
         {% empty %}
-        <tr><td><p class="caption">Товаров нет</p></td></tr>
-
+            <tr><td><p>Товаров нет</p></td></tr> <!-- Выводится при отсутствии товаров -->
         {% endfor %}
     </form>
 </table>

@@ -1,4 +1,23 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,700,900);
+
+/* стиль сообщений на страницах авторизации и регистрации */
+.messages {
+position: absolute;
+top: 10%;
+left: 50%;
+margin: 0 0 0 -250px;
+width: 500px;
+min-height: 40px;
+font-size: 20px;
+text-align: center;
+text-vertical: center;
+border-radius: 25px;
+border: 4px double black;
+background: rgba(0, 0, 0, 0.3);
+padding: 10px 10px 0 10px;
+}
+
+/* базовые стили для форм Авторизации и Регистрации */
 * {
   user-select: none;
   -webkit-box-sizing: border-box;
@@ -164,20 +183,4 @@ input[type="submit"]:hover {
   text-align: left;
   padding-left: 25px;
   text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
-}
-
-.messages {
-position: absolute;
-top: 20%;
-left: 50%;
-margin: 0 0 0 -250px;
-width: 500px;
-min-height: 40px;
-font-size: 20px;
-text-align: center;
-text-vertical: center;
-border-radius: 25px;
-border: 4px double black;
-background: rgba(0, 0, 0, 0.3);
-padding: 10px 10px 0 10px;
 }

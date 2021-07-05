@@ -1,11 +1,14 @@
 {% extends 'users/fon.html' %}
-{% block title%}Авторизация{% endblock %}
-{% block css %}
+{% block title%}Регистрация{% endblock %}
+{% block css %} <!-- css: эти файлы заменяют стили bootstrap -->
+<!-- base_log.css - высота формы для регистрации и положение формы и кнопок на экране -->
 <link rel="stylesheet" href="static/css/registration.css" media="screen" type="text/css" />
+<!-- base_log.css - общие стили для регистрации и авторизации-->
 <link rel="stylesheet" href="static/css/base_log.css" media="screen" type="text/css" />
 {% endblock %}
 
 {% block content %}
+<!-- форма для регистрации -->
 <form method="POST" action="" id="login" class="login">
 	{% csrf_token %}
 	<h2>Регистрация</h2>
@@ -20,16 +23,17 @@
 	<input type="submit" value="Готово" />
 	<div class="extra">
 		<table>
-   <tr>
-    <td ><a href="{% url 'password_reset' %}" class="forgetPassword">Забыл пароль</a></td>
-	   <td ><a href="{% url 'login' %}" class="forgetPassword">&ensp;Вход</a></td>
-   </tr>
-  </table>
+   			<tr>
+    			<td ><a href="{% url 'password_reset' %}" class="forgetPassword">Забыл пароль</a></td>
+	   			<td ><a href="{% url 'login' %}" class="forgetPassword">&ensp;Вход</a></td>
+   			</tr>
+  		</table>
 	</div>
 </form>
+<!-- вывод ошибкок при регистрации -->
 {% for message in messages %}
-		<div class="messages">
-			<p>{{message}}</p>
-		</div>
-	{% endfor %}
+	<div class="messages">
+		<p>{{message}}</p>
+	</div>
+{% endfor %}
 {% endblock %}

@@ -1,6 +1,7 @@
 {% extends 'users/fon.html' %}
 {% block title %}SmartShopping{% endblock %}
 {% block content %}
+<!-- Стили главной страницы сайта, при вынесении в отдельный файл заменяются bootstrap -->
 <style>
 .navigation {
   overflow: hidden;
@@ -29,28 +30,29 @@
   text-align: center;
    }
 </style>
+<!-- навигационное меню сверху страниц-->
     <div class="navigation">
-      <a href="#block1">Блок 1</a>
-      <a href="#block2">Блок 2</a>
-      <a href="#block3">Блок 3</a>
-      <a href="#block4">Блок 4</a>
+      <a href="#block1">SmartShopping</a>
+      <a href="#block2">Обо мне</a>
+      <a href="#block3">BYN</a>
+      <a href="#block4">Семейный бюджет</a>
       {% if request.user.is_authenticated %}
         <a href="{% url 'list' %}">{{request.user.username}}</a>
       {% else %}
         <a href="{% url 'login' %}">Вход</a>
       {% endif %}
     </div>
-
+<!-- контент главной страницы сайта -->
     <div class="container" id="block1">
-      <p class="pic"><img src="static/image/shop.jpg" class="img-fluid" width="1400" alt="boss"></p>
+      <p class="pic"><img src="static/image/SmartShopping.png" class="img-fluid" width="1400" alt="boss"></p>
     </div><br>
     <div class="container" id="block2">
-      <p class="pic"><img src="static/image/Boss.jpg" class="img-fluid" width="1400" alt="boss"></p>
+      <p class="pic"><img src="static/image/about.png" class="img-fluid" width="1400" alt="Dima"></p>
     </div><br>
     <div class="container" id="block3">
-      <p class="pic"><img src="static/image/Boss.jpg" class="img-fluid" width="1400" alt="boss"></p>
+      <p class="pic"><img src="static/image/money.jpg" class="img-fluid" width="1400" alt="boss"></p>
     </div><br>
     <div class="container" id="block4">
-      <p class="pic"><img src="static/image/shop.jpg" class="img-fluid" width="1400" alt="boss"></p>
+      <p class="pic"><img src="static/image/plan.jpg" class="img-fluid" width="1400" alt="boss"></p>
     </div><br>
 {% endblock %}

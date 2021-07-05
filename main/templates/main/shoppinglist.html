@@ -1,45 +1,46 @@
 {% extends 'main/main_base.html' %}
 {% block title%}пользователь{% endblock %}
-
+<!-- форма для добавления товаров, которые купил пользователь: Название товара, цена, количество, мера, дата покупки -->
 {% block content1 %}
+<!-- Добавление товара в базу данных ShoppingList -->
 <form class="form" id='form1' name="form1" method="POST" action="">
     {% csrf_token %}
-  <div class="caption">Добавление товара</div>
+    <div class="caption">Добавление товара</div>
     <input class='input' type="text" name="name" placeholder="Название" required="required">
     <input class='input' type="number" min="0.01"step="0.01" name="price" placeholder="Цена" required="required">
-  <div class="line">
-    <input class='input' type="number" min="1"step="1" id="count_pr" name="count" placeholder="Количество" required="required" value="1"/>
-    <select class='input' name="measure" size="1">
-        <option selected value="шт.">шт.</option>
-        <option value="кг.">кг.</option>
-        <option value="гр.">гр.</option>
-        <option value="л.">л.</option>
-  </select>
-  </div>
-  <input class='input' type="date" name="data" placeholder="Дата" required="required" value="{{ today }}"/>
+    <div class="line">
+        <input class='input' type="number" min="1"step="1" id="count_pr" name="count" placeholder="Количество" required="required" value="1"/>
+        <select class='input' name="measure" size="1">
+            <option selected value="шт.">шт.</option>
+            <option value="кг.">кг.</option>
+            <option value="гр.">гр.</option>
+            <option value="л.">л.</option>
+        </select>
+    </div>
+    <input class='input' type="date" name="data" placeholder="Дата" required="required" value="{{ today }}"/>
     <button class='butt add' type="submit" name="button" value="Добавить">Добавить</button>
 </form>
-
+<!-- Загрузка товаов из базы данных на конкретную дату, дата выбирается и жмется кнопка готово -->
 <form class="form" id='form2' name="form2" method="POST" action="">
     {% csrf_token %}
-<input class='input' type="date" name="data" placeholder="Дата" value="{{ day }}"/>
+    <input class='input' type="date" name="data" placeholder="Дата" value="{{ day }}"/>
     <button class='butt add' type="submit" name="button" value="Готово">Готово</button>
 </form>
-
+<!-- Список товаров на указанную дату, с возможностью удаления товара -->
 <table class="tab shop">
-<caption>Список покупок <br> на {{ day }} </caption>
+    <caption>Список покупок <br> на {{ day }} </caption>
     <form name="form3" method="POST" action="">
         {% csrf_token %}
         {% for element in date %}
-        <tr>
-        <td><p>{{ forloop.counter }}.</p></td>
-        <td><p>{{ element.name }}</p></td>
-        <td><p>{{element.count}} {{element.measure}}</p></td>
-        <td><p>{{element.price}} бел. руб.</p></td>
-        <td><button class='del' type="submit" name="button" value="{{ element.id }}">Удалить</button></td>
-        </tr>
+            <tr>
+                <td><p>{{ forloop.counter }}.</p></td>
+                <td><p>{{ element.name }}</p></td>
+                <td><p>{{element.count}} {{element.measure}}</p></td>
+                <td><p>{{element.price}} бел. руб.</p></td>
+                <td><button class='del' type="submit" name="button" value="{{ element.id }}">Удалить</button></td>
+            </tr>
         {% empty %}
-        <tr><td><p class="caption">Товаров нет</p></td></tr>
+            <tr><td><p class="caption">Товаров нет</p></td></tr> <!-- Выводится при отсутствии товаров -->
         {% endfor %}
     </form>
 </table>

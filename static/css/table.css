@@ -1,9 +1,10 @@
-/* таблица */
+/* таблицы Список покупок*/
+/* таблица для листа покупок: размеры и расположение*/
 .buy {
     margin: 330px 0 0 -250px;
     max-height: 600px;
 }
-
+/* таблица для листа покупок: размеры и расположение*/
 .shop {
     margin: 500px 0 0 -250px;
     max-height: 500px;
@@ -22,7 +23,7 @@
     border-collapse: collapse;
     border-left: 3px solid #ffff00;
     border-right: 3px solid #ffff00;
-    border-bottom: 3px solid #F79361;
+    border-bottom: 3px solid #ffff00;
     font-family: "Montserrat";
  }
 .tab caption {

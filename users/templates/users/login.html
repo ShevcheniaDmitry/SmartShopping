@@ -1,11 +1,14 @@
 {% extends 'users/fon.html' %}
 {% block title%}Авторизация{% endblock %}
-{% block css %}
-<link rel="stylesheet" href="static/css/login.css" media="screen" type="text/css" />
-<link rel="stylesheet" href="static/css/base_log.css" media="screen" type="text/css" />
+{% block css %}  <!-- css: эти файлы заменяют стили bootstrap -->
+<!-- login.css - высота формы для авторизации и положение формы и кнопок на экране -->
+	<link rel="stylesheet" href="static/css/login.css" media="screen" type="text/css" />
+<!-- base_log.css - общие стили для Регистрации и Авторизации-->
+	<link rel="stylesheet" href="static/css/base_log.css" media="screen" type="text/css" />
 {% endblock %}
 
 {% block content %}
+<!-- форма для авторизации -->
 <form method="POST" action="" id="login" class="login">
 	{% csrf_token %}
 	<h2>Авторизация</h2>
@@ -16,17 +19,18 @@
 	<input type="submit" value="Войти" />
 	<div class="extra">
 		<table>
-   <tr>
-    <td ><a href="{% url 'password_reset' %}" class="forgetPassword">Забыл пароль</a></td>
-	<td ><a href="{% url 'registration' %}" class="forgetPassword">Регистрация</a></td>
-   </tr>
-  </table>
+   			<tr>
+    			<td ><a href="{% url 'password_reset' %}" class="forgetPassword">Забыл пароль</a></td>
+				<td ><a href="{% url 'registration' %}" class="forgetPassword">Регистрация</a></td>
+   			</tr>
+  		</table>
 	</div>
 </form>
-	{% for message in messages %}
-		<div class="messages">
-			<p>{{message}}</p>
-		</div>
-	{% endfor %}
+<!-- вывод ошибки при авторизации "неаерное имя или пароль" и сообщения "пользователь зарегистрирован" -->
+{% for message in messages %}
+	<div class="messages">
+		<p>{{message}}</p>
+	</div>
+{% endfor %}
 {% endblock %}
 
