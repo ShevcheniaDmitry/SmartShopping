@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-s3ji$9(904h6njx57n$fyn+%1y&m9n3#)kk_dq=y@jd4o+ezlk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'smartshopping2021.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'smartshopping2021.herokuapp.com']
 
 
 # Application definition
@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    #'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
