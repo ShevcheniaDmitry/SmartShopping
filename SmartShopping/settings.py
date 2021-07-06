@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'SmartShopping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('NAME'),
-        'USER': os.environ.get('USER'),
-        'PASSWORD': os.environ.get('PASSWORD'),
-        'HOST': os.environ.get('HOST'),
+        'NAME': 'd44frdmm3i7rgs',
+        'USER': 'kquyggevrmxwfe',
+        'PASSWORD': '5e9b0a35c767c6355795dddb56da94a24133b08a5f6b9660e89300c1bc280b72',
+        'HOST': 'ec2-54-73-147-133.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -145,12 +145,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-EMAIL_BACKEND = os.environ.get('EMAIL_BACKEND')
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = 'smartshoppingit@gmail.com'
+EMAIL_HOST_PASSWORD ='QAZXC12369'
 
 
 
