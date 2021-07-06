@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-s3ji$9(904h6njx57n$fyn+%1y&m9n3#)kk_dq=y@jd4o+ezlk'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'SmartShopping.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd44frdmm3i7rgs',
-        'USER': 'kquyggevrmxwfe',
-        'PASSWORD': '5e9b0a35c767c6355795dddb56da94a24133b08a5f6b9660e89300c1bc280b72',
-        'HOST': 'ec2-54-73-147-133.eu-west-1.compute.amazonaws.com',
+        'NAME': os.environ.get('NAME'),
+        'USER': os.environ.get('USER'),
+        'PASSWORD': os.environ.get('PASSWORD'),
+        'HOST': os.environ.get('HOST'),
         'PORT': '5432',
     }
 }
